@@ -18,8 +18,12 @@ from django.contrib import admin
 from hel import views
 #from hel.views import FuncHello
 
+from ask import views
+
+
 urlpatterns = [
+    url(r'^/?', views.getpost, name='getpost'),
+    url(r'^/?', views.index, name='index'),
     url(r'^admin/', include(admin.site.urls)),
     #url(r'hel/$',FuncHello),
-    url(r'^$', views.FuncHello)
 ]
