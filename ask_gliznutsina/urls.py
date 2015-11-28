@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from hel import views
-#from hel.views import FuncHello
-
 from ask import views
 
 
 urlpatterns = [
-    url(r'^/?', views.getpost, name='getpost'),
-    url(r'^/?', views.index, name='index'),
+    url(r'^signup/?', views.signup, name='signup'),
+    url(r'^login/?', views.login, name='login'),
+    url(r'^ask/?', views.ask, name='ask'),
+    url(r'^hot/?', views.hot, name='hot'),
+    url(r'^question/(?P<question_number>[0-9]+)?', views.question, name='question'),
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'hel/$',FuncHello),
+    url(r'^(?P<page>[0-9]+)?', views.index, name='index_page'),
 ]

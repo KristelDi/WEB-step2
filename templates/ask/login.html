@@ -1,0 +1,28 @@
+{% extends "ask/base.html" %}
+
+{% block content %}
+
+	<div class="row">
+		<div class="col-lg-5 col-lg-offset-5">
+			<h2 class="form-signin-heading">Log in</h2>
+			<form>
+				<div class="form-group" >
+					<label class="sr-only " for="exampleInputLogin">Login</label>
+					<input type="login" class="form-control" id="exampleInputLogin" placeholder="Login">
+				</div>
+				<div>
+					<label for="inputPassword" class="sr-only">Password</label>
+					<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="remember-me"> Remember me
+					</label>
+				</div>
+				<button type="submit" class="btn btn-primary btn-block">Log in</button>
+			</form>
+		</div>
+  	</div>
+
+
+{% endblock %}
