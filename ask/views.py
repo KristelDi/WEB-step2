@@ -12,20 +12,20 @@ for i in xrange(1,30):
 	'title' : 'title {}'.format(i),
 	'id' : i,
 	'text' : 'smth {}'.format(i),
-	'likes' : 30 - i,
+	'likes' : 30 + i,
 	})	
 
 def index(request, page=None):
     pager = Paginator(questions, 4)
-    qlist = pager.page(page or 1)
+    qlist = (pager.page(page or 1)).object_list
     return render(request, 'ask/index.html', {
-        'qlist': qlist.object_list,
+        'qlist': qlist,
         'page': page,
    	})
 
 
 def question (request, question_number=1):
-    quest = questions[int (question_number) - 1];
+    quest = questions[int(question_number) - 1];
     return render(request, 'ask/question.html', {
         'quest': quest,
    	})	
@@ -41,14 +41,15 @@ def ask(request):
 	return render(request,'ask/ask.html')
 
  
-def hot(request):
+def hot(request, page=None):
    # questions.sort(questions.likes);
     temp = questions;
     temp.sort(key=lambda x: x['likes'], reverse=True);
     quest = [];
-    for i in xrange(0,9):
+    for i in xrange(0,5):
 		quest.append(temp[i]);
    	#quest = quest.fetch(5)
-    return render(request, 'ask/hot.html', {
-        'quest': quest,
-  	})	
+    return render(request, 'ask/index.html', {
+        'qlist': quest,
+        'page': page,
+ 	})	
