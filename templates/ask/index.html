@@ -52,18 +52,6 @@
 
 {% block pagination %}
 
-<div class="row">
-    <div class="pagination pagination-minimal kris_paggination">
-        <ul>
-		{% for t in count_list %}
-			{% if t == page %}
-  	       		<li class="active"><a href="{% url 'index' %}">{{t}}</a></li>
-  	       	{%else %}
-  	       		<li><a href="{{t}}">{{t}}</a></li>		
-			{% endif %}
-		{% endfor %}
-        </ul>
-    </div>	
-</div>
+{% include "ask/pagination.html" %}
 
 {%endblock%}
