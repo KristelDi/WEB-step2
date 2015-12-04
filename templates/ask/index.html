@@ -11,7 +11,7 @@
 		   </div>
 		</div>
 
-	<h4> page {{page}} </h4>
+	<h4> page {{page}}</h4>
 	{% for q in qlist %}
 	<div class="row">
 		<div class="col-lg-9">
@@ -23,7 +23,7 @@
 					<span class="glyphicon glyphicon-thumbs-down col-lg-3 col-lg-push-4 add-margin" aria-hidden="true"></span>
 				</p>
 				<div class="col-lg-9 pull-right row">
-					<h4> {{ q.title }} </h4>
+					<a href="{% url 'question' %}{{q.id}}"><h4> {{ q.title }} </h4></a>
 					<p> {{ q.text }} </p>
 					<span class="col-lg-3 col-lg-push-2 answers"> ответов(2) </span>
 					<span class="col-lg-6 col-lg-push-2 answers"> Метки: #Сибирь </span>
@@ -48,5 +48,22 @@
 
 {% endfor %}
 
-
 {% endblock %}
+
+{% block pagination %}
+
+<div class="row">
+    <div class="pagination pagination-minimal kris_paggination">
+        <ul>
+		{% for t in count_list %}
+			{% if t == page %}
+  	       		<li class="active"><a href="{% url 'index' %}">{{t}}</a></li>
+  	       	{%else %}
+  	       		<li><a href="{{t}}">{{t}}</a></li>		
+			{% endif %}
+		{% endfor %}
+        </ul>
+    </div>	
+</div>
+
+{%endblock%}

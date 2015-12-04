@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^hot/?', views.hot, name='hot'),
     url(r'^question/(?P<question_number>[0-9]+)?', views.question, name='question'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^(?P<page>[0-9]+)?', views.index, name='index_page'),
+    url(r'^(?P<page>[0-9]+)?', views.index, name='index'),
 ]

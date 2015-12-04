@@ -18,14 +18,23 @@ for i in xrange(1,30):
 def index(request, page=None):
     pager = Paginator(questions, 4)
     qlist = (pager.page(page or 1)).object_list
+    count = len(questions) / 4 + ((len(questions) % 4) == 1);
+    count_list = [];
+    page = (page or 1);
+    for i in xrange(1,count):
+    	count_list.append(i);
     return render(request, 'ask/index.html', {
         'qlist': qlist,
-        'page': page,
+        'page': int(page),
+        'count_list': count_list,
    	})
 
 
 def question (request, question_number=1):
-    quest = questions[int(question_number) - 1];
+
+    temp = questions;
+    temp.sort(key=lambda x: x['id']);
+    quest = temp[int(question_number) - 1];
     return render(request, 'ask/question.html', {
         'quest': quest,
    	})	
@@ -53,3 +62,6 @@ def hot(request, page=None):
         'qlist': quest,
         'page': page,
  	})	
+
+
+
